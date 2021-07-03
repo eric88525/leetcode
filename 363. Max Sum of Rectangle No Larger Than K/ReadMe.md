@@ -41,7 +41,7 @@ int findMaxInArr(vector<int> arr, int  k) {
 }
 ```
 
-![](./圖解.png)
+![](https://github.com/eric88525/leetcode/blob/main/363.%20Max%20Sum%20of%20Rectangle%20No%20Larger%20Than%20K/%E5%9C%96%E8%A7%A3.png)
 
 + 全部掃一遍
 
