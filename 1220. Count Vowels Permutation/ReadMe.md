@@ -33,7 +33,7 @@ while(--n){
 ```
 示範:
 
-![]()
+![](https://github.com/eric88525/leetcode/blob/main/1220.%20Count%20Vowels%20Permutation/p1.png)
 
 
 
