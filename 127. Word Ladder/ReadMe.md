@@ -8,5 +8,5 @@
 
 在每個 step，把所有的可能性加到queue 裡面，碰到endWord回傳答案。
 
-![]()
+![](https://github.com/eric88525/leetcode/blob/main/127.%20Word%20Ladder/p1.png)
 
