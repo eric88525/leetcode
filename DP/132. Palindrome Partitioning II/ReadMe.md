@@ -12,6 +12,7 @@
 	
 3. 最後回傳 min_dp [-1] 就好
 
+![](https://github.com/eric88525/leetcode/blob/main/DP/132.%20Palindrome%20Partitioning%20II/132.png)
 
 
 
