@@ -7,50 +7,47 @@ BFS
 
 ```c++
 class Solution {
-public: 
+public:
     int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+     
+        int row = grid.size();
+        if(!row) return -1;
         
-        int row = grid.size(),col = grid[0].size();
+        int col = grid[0].size();
+        if(row == 1 && col == 1) return 1;
         
-        if(row ==0 || col == 0) return -1;
+        if(grid[0][0]) return -1;
+        grid[0][0] = 1;
         
-        if(grid[0][0] != 0 || grid[row-1][col-1] != 0) return -1;
-           
-        // enum all direction   
-        vector<vector<int>> directions = { {0,1} , {1,0} ,{1,1} ,  {-1,-1},{0,-1},{1,-1},{-1,0},{-1,1},};
-        
-        // first in first out
-
+        // start from 0,0
         queue<pair<int,int>> que;
         que.push(make_pair(0,0));
         
-        grid[0][0] = 1;
-        
-        while(!que.empty()){
-            
-            auto curr = que.front();
-            
-            int x = curr.second , y= curr.first;
-            
-            // the end of the map , return
-            if(x == col-1 && y == row-1) return grid[y][x];
-            
-            // find all possible walkpath
-            for(auto direct : directions){
-            
-                int nx = x + direct[1];
-                int ny = y + direct[0];
+        // bfs
+        while(que.size()){
+            int s = que.size();
+
+            while(s--){
+                auto now = que.front();
                 
-                // make sure x & y in range
-                if(   nx>=0 && nx < col   && ny>=0 && ny<row && grid[ny][nx] == 0){ 
-                    
-                    que.push( make_pair(ny,nx));                    
-                    grid[ny][nx] = grid[y][x] + 1;
-                }          
-            }
-            que.pop();
+                for(int x=-1;x<=1;x++){
+                    for(int y=-1;y<=1;y++){  
+                		// prevent out of the board
+                        int next_x = min(max(0, now.first + x), row-1);
+                        int next_y = min(max(0, now.second + y), col-1);
+                        
+                        if(!grid[next_x][next_y]){
+                            // push to bfs que
+                            que.push(make_pair(next_x, next_y));
+                            grid[next_x][next_y] = grid[now.first][now.second] + 1;
+                            if (next_x == row-1 && next_y == col -1)
+                                return grid[now.first][now.second] + 1;
+                        }
+                    }
+                }
+                que.pop(); 
+            }     
         }
-        
         return -1;
     }
 };
