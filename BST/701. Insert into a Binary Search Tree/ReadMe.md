@@ -7,12 +7,12 @@ https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
 ### loop
 
 Create 2 pointer,one is point to previous node and the other is point to current node.
-let current pointer find place to insert node. 
+let current pointer find place to insert node.
 
-+ If val  < current node's val , let current node point to current node's left place.
-+ If val  > current node's val , let current node point to current node's left place.
+- If val < current node's val , let current node point to current node's left place.
+- If val > current node's val , let current node point to current node's left place.
 
-+ Insert new node to temp node's left or right.
+- Insert new node to temp node's left or right.
 
 ### Recursion
 
@@ -23,16 +23,15 @@ public:
         if(!root){
             return new TreeNode(val);
         }
-             
+
         // right side
         if(root->val < val  ){
             root->right =  insertIntoBST(root->right , val);
         }else{
             root->left = insertIntoBST(root->left , val);
         }
-        
+
         return root;
-        
+
     }
 ```
-

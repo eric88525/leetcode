@@ -10,47 +10,51 @@
  * };
  */
 
-
 // solution 1
 
-class Solution {
+class Solution
+{
 public:
-    TreeNode* searchBST(TreeNode* root, int val) {
+    TreeNode *searchBST(TreeNode *root, int val)
+    {
 
-        
-        if(root == NULL){
+        if (root == NULL)
+        {
             return NULL;
         }
-        
-        if(root->val == val)
+
+        if (root->val == val)
             return root;
-        
-        else if(root->val > val)
+
+        else if (root->val > val)
             return searchBST(root->left, val);
-        
+
         return searchBST(root->right, val);
-        
     }
 };
 
-
 // solution 2
 
-class Solution {
+class Solution
+{
 public:
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
-        if(!root){
+    TreeNode *insertIntoBST(TreeNode *root, int val)
+    {
+        if (!root)
+        {
             return new TreeNode(val);
         }
-             
+
         // right side
-        if(root->val < val  ){
-            root->right =  insertIntoBST(root->right , val);
-        }else{
-            root->left = insertIntoBST(root->left , val);
+        if (root->val < val)
+        {
+            root->right = insertIntoBST(root->right, val);
         }
-        
+        else
+        {
+            root->left = insertIntoBST(root->left, val);
+        }
+
         return root;
-        
     }
 };

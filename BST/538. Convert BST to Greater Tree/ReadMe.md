@@ -15,29 +15,28 @@ Process:
 ```c++
 class Solution {
 public:
-    
+
     int currentSum=0;
-    
+
     void go( TreeNode* root  ){
-                
+
         if(root->right) go(root->right);
-        
+
         currentSum += root->val;
-        root-> val =currentSum;        
-        
-        if(root->left) go(root->left);  
-        
+        root-> val =currentSum;
+
+        if(root->left) go(root->left);
+
     }
 
-    
+
     TreeNode* convertBST(TreeNode* root) {
 
         if(!root) return root;
-        
+
         go(root);
-        
+
         return root ;
     }
 };
 ```
-

@@ -1,14 +1,26 @@
-+ 用 idxmap 來記錄 char 是在哪個時間點被看到
+# 3. Longest Substring Without Repeating Characters
 
-```
-idxmap[int(s[i])] = i;
-```
-+ 用 sidx 紀錄這次的字串，是從哪個index開始
-    + 假設p上次出現在字串的2，這次又看到p，那新句子的sidx，就是上次看到 p 再+1
+- 用 start 來記錄不重複字母的起始點
+- 如果之前看過某字母，當倫的 start 應該從他的下一位置開始 例如:
+  - [a b c a b c b b] 碰到第二次 a 時，start 應該更新為 `上一次見到a的位置+1`
+  - 如果都沒重複，那 start 維持在 0
 
-```cpp=
-    sidx = max(  sidx , idxmap[int(s[i])] + 1 );    
+```cpp
+class Solution
+{
+public:
+    int lengthOfLongestSubstring(string s)
+    {
+        vector<int> last_index(255, -1);
+        int ans = 0;
+        int start = 0;
+        for (int i = 0; i < s.size(); i++)
+        {
+            start = max(start, last_index[s[i]]);
+            ans = max(i - start + 1, ans);
+            last_index[s[i]] = i + 1;
+        }
+        return ans;
+    }
+};
 ```
-+ 以下情況， 當第二次看到a時，新句子的頭就該從b開始
-+ a b c a 
-+ 0 1 2 
